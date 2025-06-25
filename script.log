@@ -1,0 +1,1443 @@
+nohup: ignoring input
+/home/quentin/AML_TSF/pipeline.py:232: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  shap_values = torch.tensor(shap_values)
+Attack list: dict_keys(['attack_contrib', 'highest_contrib', 'attack_distrib', 'pgd', 'fgsm', 'bim']), dataset list: dict_keys(['euma']), model list: dict_keys(['dlinear'])
+new best validation loss: 0.3916357159614563
+Epoch 0: train loss 0.577420, val loss 0.391636,  test loss 0.415852 
+new best validation loss: 0.36328691244125366
+Epoch 1: train loss 0.364172, val loss 0.363287,  test loss 0.361449 
+new best validation loss: 0.34243786334991455
+Epoch 2: train loss 0.343284, val loss 0.342438,  test loss 0.348723 
+new best validation loss: 0.339694619178772
+Epoch 3: train loss 0.333679, val loss 0.339695,  test loss 0.344683 
+new best validation loss: 0.3298085629940033
+Epoch 4: train loss 0.329818, val loss 0.329809,  test loss 0.340683 
+new best validation loss: 0.3200056850910187
+Epoch 5: train loss 0.326799, val loss 0.320006,  test loss 0.343559 
+Epoch 6: train loss 0.325361, val loss 0.331173,  test loss 0.340610 
+new best validation loss: 0.3167346715927124
+Epoch 7: train loss 0.324196, val loss 0.316735,  test loss 0.339760 
+Epoch 8: train loss 0.322704, val loss 0.323334,  test loss 0.337474 
+Epoch 9: train loss 0.322019, val loss 0.318139,  test loss 0.336277 
+Epoch 10: train loss 0.321117, val loss 0.318510,  test loss 0.334554 
+Epoch 11: train loss 0.320099, val loss 0.316823,  test loss 0.338466 
+new best validation loss: 0.3128306269645691
+Epoch 12: train loss 0.319859, val loss 0.312831,  test loss 0.334843 
+Epoch 13: train loss 0.320078, val loss 0.318688,  test loss 0.337847 
+Epoch 14: train loss 0.319775, val loss 0.321317,  test loss 0.334629 
+Epoch 15: train loss 0.319225, val loss 0.317619,  test loss 0.336086 
+Epoch 16: train loss 0.319918, val loss 0.318455,  test loss 0.332604 
+Epoch 17: train loss 0.318509, val loss 0.321903,  test loss 0.330365 
+new best validation loss: 0.30945420265197754
+Epoch 18: train loss 0.318616, val loss 0.309454,  test loss 0.335741 
+new best validation loss: 0.3079510033130646
+Epoch 19: train loss 0.320362, val loss 0.307951,  test loss 0.334892 
+Epoch 20: train loss 0.317306, val loss 0.326574,  test loss 0.334195 
+Epoch 21: train loss 0.317457, val loss 0.312651,  test loss 0.332951 
+Epoch 22: train loss 0.318069, val loss 0.311149,  test loss 0.332578 
+Epoch 23: train loss 0.318464, val loss 0.316569,  test loss 0.331293 
+Epoch 24: train loss 0.317289, val loss 0.315976,  test loss 0.335989 
+Epoch 25: train loss 0.318955, val loss 0.319523,  test loss 0.330564 
+Epoch 26: train loss 0.318641, val loss 0.312617,  test loss 0.331667 
+Epoch 27: train loss 0.317139, val loss 0.309881,  test loss 0.333262 
+Epoch 28: train loss 0.318019, val loss 0.311708,  test loss 0.333564 
+Epoch 29: train loss 0.318534, val loss 0.321628,  test loss 0.330754 
+Epoch 30: train loss 0.317369, val loss 0.312494,  test loss 0.331804 
+Epoch 31: train loss 0.318311, val loss 0.314286,  test loss 0.332862 
+new best validation loss: 0.30663996934890747
+Epoch 32: train loss 0.317424, val loss 0.306640,  test loss 0.332696 
+Epoch 33: train loss 0.316223, val loss 0.311161,  test loss 0.334389 
+Epoch 34: train loss 0.317454, val loss 0.327055,  test loss 0.328340 
+Epoch 35: train loss 0.316560, val loss 0.307727,  test loss 0.336583 
+Epoch 36: train loss 0.317047, val loss 0.312045,  test loss 0.330205 
+Epoch 37: train loss 0.316313, val loss 0.313969,  test loss 0.336076 
+Epoch 38: train loss 0.315743, val loss 0.313470,  test loss 0.329291 
+Epoch 39: train loss 0.314573, val loss 0.313471,  test loss 0.329320 
+Epoch 40: train loss 0.313478, val loss 0.310977,  test loss 0.330175 
+Epoch 41: train loss 0.314393, val loss 0.313471,  test loss 0.328936 
+Epoch 42: train loss 0.313443, val loss 0.311734,  test loss 0.329687 
+Epoch 43: train loss 0.314302, val loss 0.312536,  test loss 0.329619 
+Epoch 44: train loss 0.313549, val loss 0.310739,  test loss 0.329751 
+Epoch 45: train loss 0.314021, val loss 0.310842,  test loss 0.330137 
+Epoch 46: train loss 0.313573, val loss 0.310650,  test loss 0.329841 
+Epoch 47: train loss 0.313646, val loss 0.311910,  test loss 0.330170 
+Epoch 48: train loss 0.313631, val loss 0.309733,  test loss 0.330487 
+Epoch 49: train loss 0.313474, val loss 0.311640,  test loss 0.329563 
+Epoch 50: train loss 0.314555, val loss 0.309271,  test loss 0.330447 
+Epoch 51: train loss 0.314490, val loss 0.311823,  test loss 0.329954 
+Epoch 52: train loss 0.313690, val loss 0.311390,  test loss 0.329697 
+Epoch 53: train loss 0.313487, val loss 0.310770,  test loss 0.330042 
+Epoch 54: train loss 0.314494, val loss 0.310352,  test loss 0.330424 
+Epoch 55: train loss 0.314256, val loss 0.309393,  test loss 0.330466 
+Epoch 56: train loss 0.313531, val loss 0.310970,  test loss 0.329727 
+Epoch 57: train loss 0.313448, val loss 0.310815,  test loss 0.329778 
+Epoch 58: train loss 0.313158, val loss 0.310783,  test loss 0.329806 
+Epoch 59: train loss 0.314298, val loss 0.310659,  test loss 0.329894 
+Epoch 60: train loss 0.313592, val loss 0.310675,  test loss 0.329875 
+Epoch 61: train loss 0.314231, val loss 0.310692,  test loss 0.329892 
+Epoch 62: train loss 0.313093, val loss 0.310810,  test loss 0.329866 
+Epoch 63: train loss 0.313166, val loss 0.310659,  test loss 0.329938 
+Epoch 64: train loss 0.312652, val loss 0.310722,  test loss 0.329923 
+Epoch 65: train loss 0.312883, val loss 0.310563,  test loss 0.329973 
+Epoch 66: train loss 0.312717, val loss 0.310691,  test loss 0.329936 
+Epoch 67: train loss 0.313059, val loss 0.310691,  test loss 0.329929 
+Epoch 68: train loss 0.312923, val loss 0.310690,  test loss 0.329923 
+Epoch 69: train loss 0.313755, val loss 0.310515,  test loss 0.330000 
+Epoch 70: train loss 0.312752, val loss 0.310683,  test loss 0.329922 
+Epoch 71: train loss 0.312852, val loss 0.310741,  test loss 0.329901 
+Epoch 72: train loss 0.313619, val loss 0.310714,  test loss 0.329914 
+Epoch 73: train loss 0.313008, val loss 0.310676,  test loss 0.329934 
+Epoch 74: train loss 0.313298, val loss 0.310449,  test loss 0.329990 
+Epoch 75: train loss 0.312870, val loss 0.310562,  test loss 0.329961 
+Epoch 76: train loss 0.312558, val loss 0.310435,  test loss 0.329994 
+Epoch 77: train loss 0.312960, val loss 0.310448,  test loss 0.329987 
+Epoch 78: train loss 0.314640, val loss 0.310417,  test loss 0.329999 
+Epoch 79: train loss 0.312966, val loss 0.310447,  test loss 0.329990 
+Epoch 80: train loss 0.313324, val loss 0.310684,  test loss 0.329911 
+Epoch 81: train loss 0.314190, val loss 0.310501,  test loss 0.329958 
+Epoch 82: train loss 0.313537, val loss 0.310498,  test loss 0.329957 
+Epoch 83: train loss 0.313449, val loss 0.310512,  test loss 0.329952 
+Epoch 84: train loss 0.312978, val loss 0.310502,  test loss 0.329960 
+Epoch 85: train loss 0.313021, val loss 0.310502,  test loss 0.329957 
+Epoch 86: train loss 0.313238, val loss 0.310510,  test loss 0.329953 
+Epoch 87: train loss 0.313605, val loss 0.310495,  test loss 0.329961 
+Epoch 88: train loss 0.313714, val loss 0.310491,  test loss 0.329961 
+Epoch 89: train loss 0.313994, val loss 0.310488,  test loss 0.329961 
+Epoch 90: train loss 0.312576, val loss 0.310504,  test loss 0.329954 
+Epoch 91: train loss 0.313593, val loss 0.310509,  test loss 0.329951 
+Epoch 92: train loss 0.313839, val loss 0.310488,  test loss 0.329961 
+Epoch 93: train loss 0.314160, val loss 0.310492,  test loss 0.329961 
+Epoch 94: train loss 0.313002, val loss 0.310515,  test loss 0.329952 
+Epoch 95: train loss 0.313990, val loss 0.310498,  test loss 0.329959 
+Epoch 96: train loss 0.313853, val loss 0.310489,  test loss 0.329963 
+Epoch 97: train loss 0.312988, val loss 0.310504,  test loss 0.329958 
+Epoch 98: train loss 0.312920, val loss 0.310513,  test loss 0.329951 
+Epoch 99: train loss 0.313681, val loss 0.310513,  test loss 0.329951 
+torch.Size([1443, 70, 1]) torch.Size([1443, 70, 35])
+Running attack attack_contrib using shap values on dlinear training with euma
+166 , range of points : 96 167
+401 , range of points : 331 402
+579 , range of points : 509 580
+677 , range of points : 607 678
+868 , range of points : 798 869
+1015 , range of points : 945 1016
+1135 , range of points : 1065 1136
+1146 , range of points : 1076 1147
+1149 , range of points : 1079 1150
+1324 , range of points : 1254 1325
+points to compute :  [717, 677, 1152, 1149, 1146, 1135]
+717 , range of points : 647 718
+677 , range of points : 607 678
+1152 , range of points : 1082 1153
+1149 , range of points : 1079 1150
+1146 , range of points : 1076 1147
+1135 , range of points : 1065 1136
+166 , range of points : 96 167
+401 , range of points : 331 402
+579 , range of points : 509 580
+677 , range of points : 607 678
+868 , range of points : 798 869
+1015 , range of points : 945 1016
+1135 , range of points : 1065 1136
+1146 , range of points : 1076 1147
+1149 , range of points : 1079 1150
+1324 , range of points : 1254 1325
+points to compute :  [717, 677, 1152, 1149, 1146, 1135]
+717 , range of points : 647 718
+677 , range of points : 607 678
+1152 , range of points : 1082 1153
+1149 , range of points : 1079 1150
+1146 , range of points : 1076 1147
+1135 , range of points : 1065 1136
+Running attack attack_contrib using cp values on dlinear training with euma
+166 , range of points : 96 167
+401 , range of points : 331 402
+677 , range of points : 607 678
+717 , range of points : 647 718
+868 , range of points : 798 869
+1015 , range of points : 945 1016
+1135 , range of points : 1065 1136
+1146 , range of points : 1076 1147
+1149 , range of points : 1079 1150
+1324 , range of points : 1254 1325
+points to compute :  [579, 1013, 1015]
+579 , range of points : 509 580
+1013 , range of points : 943 1014
+1015 , range of points : 945 1016
+166 , range of points : 96 167
+401 , range of points : 331 402
+677 , range of points : 607 678
+717 , range of points : 647 718
+868 , range of points : 798 869
+1015 , range of points : 945 1016
+1135 , range of points : 1065 1136
+1146 , range of points : 1076 1147
+1149 , range of points : 1079 1150
+1324 , range of points : 1254 1325
+points to compute :  [579, 1013, 1015]
+579 , range of points : 509 580
+1013 , range of points : 943 1014
+1015 , range of points : 945 1016
+Running attack highest_contrib using shap values on dlinear training with euma
+11 , range of points : 0 12
+14 , range of points : 0 15
+16 , range of points : 0 17
+24 , range of points : 0 25
+24 , range of points : 0 25
+25 , range of points : 0 26
+25 , range of points : 0 26
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+points to compute :  [12, 14, 16, 24, 24, 25, 25, 79, 11, 26, 79, 82, 82, 25, 25, 24, 24, 16, 14, 11]
+12 , range of points : 0 13
+14 , range of points : 0 15
+16 , range of points : 0 17
+24 , range of points : 0 25
+24 , range of points : 0 25
+25 , range of points : 0 26
+25 , range of points : 0 26
+79 , range of points : 9 80
+11 , range of points : 0 12
+26 , range of points : 0 27
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+25 , range of points : 0 26
+25 , range of points : 0 26
+24 , range of points : 0 25
+24 , range of points : 0 25
+16 , range of points : 0 17
+14 , range of points : 0 15
+11 , range of points : 0 12
+11 , range of points : 0 12
+14 , range of points : 0 15
+16 , range of points : 0 17
+24 , range of points : 0 25
+24 , range of points : 0 25
+25 , range of points : 0 26
+25 , range of points : 0 26
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+points to compute :  [12, 14, 16, 24, 24, 25, 25, 79, 11, 26, 79, 82, 82, 25, 25, 24, 24, 16, 14, 11]
+12 , range of points : 0 13
+14 , range of points : 0 15
+16 , range of points : 0 17
+24 , range of points : 0 25
+24 , range of points : 0 25
+25 , range of points : 0 26
+25 , range of points : 0 26
+79 , range of points : 9 80
+11 , range of points : 0 12
+26 , range of points : 0 27
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+25 , range of points : 0 26
+25 , range of points : 0 26
+24 , range of points : 0 25
+24 , range of points : 0 25
+16 , range of points : 0 17
+14 , range of points : 0 15
+11 , range of points : 0 12
+Running attack highest_contrib using cp values on dlinear training with euma
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+points to compute :  [12, 13, 14, 15, 16, 79, 11, 11, 11, 13, 14, 15, 16, 79, 82, 82, 13, 11, 11, 11]
+12 , range of points : 0 13
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+13 , range of points : 0 14
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+points to compute :  [12, 13, 14, 15, 16, 79, 11, 11, 11, 13, 14, 15, 16, 79, 82, 82, 13, 11, 11, 11]
+12 , range of points : 0 13
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+13 , range of points : 0 14
+14 , range of points : 0 15
+15 , range of points : 0 16
+16 , range of points : 0 17
+79 , range of points : 9 80
+82 , range of points : 12 83
+82 , range of points : 12 83
+13 , range of points : 0 14
+11 , range of points : 0 12
+11 , range of points : 0 12
+11 , range of points : 0 12
+Running attack attack_distrib using shap values on dlinear training with euma
+139 , range of points : 69 140
+1093 , range of points : 1023 1094
+1095 , range of points : 1025 1096
+1097 , range of points : 1027 1098
+1099 , range of points : 1029 1100
+1195 , range of points : 1125 1196
+1197 , range of points : 1127 1198
+1199 , range of points : 1129 1200
+1231 , range of points : 1161 1232
+1336 , range of points : 1266 1337
+points to compute :  [141, 139, 1102, 1099, 1097, 1095, 1093]
+141 , range of points : 71 142
+139 , range of points : 69 140
+1102 , range of points : 1032 1103
+1099 , range of points : 1029 1100
+1097 , range of points : 1027 1098
+1095 , range of points : 1025 1096
+1093 , range of points : 1023 1094
+139 , range of points : 69 140
+1093 , range of points : 1023 1094
+1095 , range of points : 1025 1096
+1097 , range of points : 1027 1098
+1099 , range of points : 1029 1100
+1195 , range of points : 1125 1196
+1197 , range of points : 1127 1198
+1199 , range of points : 1129 1200
+1231 , range of points : 1161 1232
+1336 , range of points : 1266 1337
+points to compute :  [141, 139, 1102, 1099, 1097, 1095, 1093]
+141 , range of points : 71 142
+139 , range of points : 69 140
+1102 , range of points : 1032 1103
+1099 , range of points : 1029 1100
+1097 , range of points : 1027 1098
+1095 , range of points : 1025 1096
+1093 , range of points : 1023 1094
+Running attack attack_distrib using cp values on dlinear training with euma
+1093 , range of points : 1023 1094
+1095 , range of points : 1025 1096
+1097 , range of points : 1027 1098
+1099 , range of points : 1029 1100
+1102 , range of points : 1032 1103
+1231 , range of points : 1161 1232
+1233 , range of points : 1163 1234
+1235 , range of points : 1165 1236
+1238 , range of points : 1168 1239
+1369 , range of points : 1299 1370
+points to compute :  [139, 1105, 1102, 1099, 1097, 1095, 1093]
+139 , range of points : 69 140
+1105 , range of points : 1035 1106
+1102 , range of points : 1032 1103
+1099 , range of points : 1029 1100
+1097 , range of points : 1027 1098
+1095 , range of points : 1025 1096
+1093 , range of points : 1023 1094
+1093 , range of points : 1023 1094
+1095 , range of points : 1025 1096
+1097 , range of points : 1027 1098
+1099 , range of points : 1029 1100
+1102 , range of points : 1032 1103
+1231 , range of points : 1161 1232
+1233 , range of points : 1163 1234
+1235 , range of points : 1165 1236
+1238 , range of points : 1168 1239
+1369 , range of points : 1299 1370
+points to compute :  [139, 1105, 1102, 1099, 1097, 1095, 1093]
+139 , range of points : 69 140
+1105 , range of points : 1035 1106
+1102 , range of points : 1032 1103
+1099 , range of points : 1029 1100
+1097 , range of points : 1027 1098
+1095 , range of points : 1025 1096
+1093 , range of points : 1023 1094
+Running attack pgd on dlinear training with euma
+Running attack fgsm on dlinear training with euma
+Running attack bim on dlinear training with euma
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+X_test
+X_train
+cp_values
+loss_train
+predictions
+shap_values
+test_loss
+val_loss
+y_test
+y_train
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+input
+output
+target_points
+decision_tensor
+indices
+X_indices
+duration
+in_fnorm
+in_mse
+in_mape
+out_mse_gt
+out_mae_gt
+out_mse
+out_mae
+num_targeted
+backtime_comparison
+compute_poisoned_tensors
+compare_targeted_points_before_and_after_poisoning
+Dataset
+euma
+data_filename
+num_of_vertices
+period
+points_per_hour
+num_for_predict
+len_input
+dataset_name
+use_timestamps
+loopback
+horizon
+batch_size
+X_train
+X_test
+y_train
+y_test
+X_train_flatten
+X_test_flatten
+y_train_flatten
+y_test_flatten
+Attack
+attack_contrib
+poison_number
+poison_length
+epsilon
+highest_contrib
+poison_number
+poison_length
+epsilon
+attack_distrib
+poison_number
+poison_length
+epsilon
+pgd
+poison_number
+epsilon
+fgsm
+poison_number
+epsilon
+bim
+poison_number
+epsilon
+Model
+dlinear
+seq_len
+label_len
+pred_len
+num_kernel
+enc_in
+individual
+learning_rate
+patience_scheduler
+epochs
+shap_batch_size
+batch_size
+THE END

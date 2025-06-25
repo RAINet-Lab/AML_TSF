@@ -3,6 +3,7 @@ import torch
 import pandas as pd
 import matplotlib.pyplot as plt
 import shap
+import h5py
 import polars as pl
 from torch import nn
 import torch.nn.functional as F
@@ -389,11 +390,8 @@ def load_config(h5f):
     return out_dict
 
 
-def load_euma(dataset_config):
-    lookback=dataset_config['loopback']
-    horizon=dataset_config["horizon"]
-    file = dataset_config["data_filename"]
-    df = pl.read_csv(file)
+def load_euma(lookback, horizon):
+    df = pl.read_csv('./dataset/euma.csv')
 
     Y_df = df.select(
         ((pl.col('vol_up') + pl.col('vol_dn')).alias('y')),
@@ -711,7 +709,7 @@ def train_model(model, dev, X_train, y_train, X_test, y_test, config):
     #     np.savetxt(f'./results/{mod}predictions/{args.model}_{args.dataset}_{args.seq_len}_{args.pred_len}_predictions.txt', predictions.reshape(-1,predictions.shape[1]*predictions.shape[2]))
     # else:
     #     np.savetxt(f'./results/{mod}predictions/{args.model}_{args.dataset}_{args.seq_len}_{args.pred_len}_predictions.txt', predictions)
-    return model, predictions, best_state_dict, loss_train, val_loss, test_loss
+    return model, predictions, loss_train, val_loss, test_loss
 
 def get_SHAP_values(model, dev, X_train, X_test, config):
     model.to(dev)

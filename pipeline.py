@@ -9,6 +9,8 @@ import matplotlib.colors as mcolors
 from torch.utils.data import TensorDataset, DataLoader
 import h5py
 import os
+import copy
+import sys
 import yaml
 import time
 from easydict import EasyDict as edict
@@ -22,102 +24,93 @@ elect_points_dict={'attack_contrib':attack_contrib_elect_points,'highest_contrib
 dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def parser_args():
-    # load configs/default_config.yaml
-    default_config = yaml.load(open('configs/default_config.yaml', 'r'), Loader=yaml.FullLoader)
-
+    
     # load training config
     run_config = yaml.load(open('configs/config.yaml'), Loader=yaml.FullLoader)
 
     attack_list = run_config.get('attacks', [])
+    print('attack_list : ',attack_list)
     dataset_list = run_config.get('datasets', [])
+    print('dataset_list : ',dataset_list)
     model_list = run_config.get('models', [])
+    print('model_list : ',model_list)
     config = {}
     config = defaultdict(lambda: defaultdict(dict))
-    try: 
-        config['backtime_comparison'] = run_config['backtime_comparison']
-    except Exception as e:
-        config['backtime_comparison'] = False
-        print("Config parameter not found for backtime_comparison and set to False by default", e)
-    try: 
-        config['compute_poisoned_tensors'] = run_config['compute_poisoned_tensors']
-    except Exception as e:
-        config['compute_poisoned_tensors'] = False
-        print("Config parameter not found for compute_poisoned_tensors and set to False by default", e)
-    try: 
-        config['compare_targeted_points_before_and_after_poisoning'] = run_config['compare_targeted_points_before_and_after_poisoning']
-    except Exception as e:
-        config['compare_targeted_points_before_and_after_poisoning'] = False
-        print("Config parameter not found for compare_targeted_points_before_and_after_poisoning and set to False by default", e)
-
+    
+    config['Model'] = {}
+    for model in model_list:
+        config['Model'][model]={}
     for dataset in dataset_list:
-        # config['Dataset'][dataset] = {}
-        config['Dataset'][dataset] = default_config['Dataset'][dataset]
-        config['Dataset'][dataset]['loopback'] = run_config['loopback']
-        config['Dataset'][dataset]['horizon'] = run_config['horizon']
-        config['Dataset'][dataset]['batch_size'] = run_config['batch_size']
-        
+        lookback = run_config["Datasets"][dataset]['lookback']
+        horizon = run_config["Datasets"][dataset]['horizon']
+        if len(lookback) == len(horizon) :
+            lookback = np.array(lookback)
+            horizon = np.array(horizon)
+        elif len(lookback)==1:
+            horizon = np.array(horizon)
+            lookback = np.array(lookback*len(horizon))
+        elif len(horizon)==1:
+            lookback = np.array(lookback)
+            horizon = np.array(horizon*len(lookback))
+        else:
+            print('Error : lookback and horizon should have same dimension or at least one of these should only have one value')
+            sys.exit(1)
+
         for attack in attack_list:
 
-            # if attack == 'backtime':
-
-            #     train_mean, train_std, train_data_seq, test_data_seq = load_raw_data(config['Dataset'][dataset], dataset)
-            #     config['Dataset_backtime'][dataset]["train_mean"]=train_mean
-            #     config['Dataset_backtime'][dataset]["train_std"]=train_std
-            #     config['Dataset_backtime'][dataset]["train_data_seq"]=train_data_seq
-            #     config['Dataset_backtime'][dataset]["test_data_seq"]=test_data_seq
-
-            #     config['Attack'][attack] = default_config['Attack'][attack]
-            #     config['Attack'][attack]['Target_Pattern'] = np.array(default_config['Target_Pattern'][default_config['Attack'][attack]['pattern_type']])
-            #     config['Attack'][attack]['Model'] = default_config['Model'][default_config['Attack'][attack]['model_name']]
-            #     config['Attack'][attack]['Model']['c_out'] = default_config['Dataset'][dataset]['num_of_vertices']
-            #     config['Attack'][attack]['Model']['enc_in'] = default_config['Dataset'][dataset]['num_of_vertices']
-            #     config['Attack'][attack]['Model']['dec_in'] = default_config['Dataset'][dataset]['num_of_vertices']
-
-
-            #     config['Attack'][attack]['loopback'] = run_config['loopback']
-            #     config['Attack'][attack]['horizon'] = run_config['horizon']
-            #     # config['Attack'][attack]['learning_rate'] = default_config['Attack'][attack]['learning_rate']
-            #     # config['Attack'][attack]['batch_size'] = run_config['batch_size']
-            #     # config['Attack'][attack]['epochs'] = default_config['Attack'][attack]['epochs']
-            #     # config['Attack'][attack]['warmup'] = default_config['Attack'][attack]['warmup']
-
-            #     config['Attack'][attack]['Surrogate'] = default_config['Model'][default_config['Attack'][attack]['surrogate_name']]
-            #     config['Attack'][attack]['Surrogate']['c_out'] = default_config['Dataset'][dataset]['num_of_vertices']
-            #     config['Attack'][attack]['Surrogate']['enc_in'] = default_config['Dataset'][dataset]['num_of_vertices']
-            #     config['Attack'][attack]['Surrogate']['dec_in'] = default_config['Dataset'][dataset]['num_of_vertices']
-            
-            # elif attack != 'backtime':
-            config['Attack'][attack] = default_config['Attack'][attack]
+            config['Attack'][attack] = run_config['Attacks'][attack]
             config['Attack'][attack]["poison_number"] = np.array(config['Attack'][attack]["poison_number"])
             config['Attack'][attack]["poison_number"].sort()
             config['Attack'][attack]["epsilon"] = np.array(config['Attack'][attack]["epsilon"])
-            
-        X_train,X_test,y_train,y_test = dataset_dict[dataset](config['Dataset'][dataset])
-        X_train_flatten = flatten_dataset(X_train).numpy()
-        X_test_flatten = flatten_dataset(X_test).numpy()
-        y_train_flatten = flatten_dataset(y_train).cpu().detach().numpy()
-        y_test_flatten = flatten_dataset(y_test).cpu().detach().numpy()
+        print("after adding the attacks : ", config.keys())
 
-        config['Dataset'][dataset]["X_train"]=X_train
-        config['Dataset'][dataset]["X_test"]=X_test
-        config['Dataset'][dataset]["y_train"]=y_train
-        config['Dataset'][dataset]["y_test"]=y_test
-        config['Dataset'][dataset]["X_train_flatten"] = X_train_flatten
-        config['Dataset'][dataset]["X_test_flatten"] = X_test_flatten
-        config['Dataset'][dataset]["y_train_flatten"] = y_train_flatten
-        config['Dataset'][dataset]["y_test_flatten"] = y_test_flatten
+        for idx,l in enumerate(lookback):
+            h = horizon[idx]
+            # print('lookback and horizon values : ', idx,l,h)
+            X_train,X_test,y_train,y_test = dataset_dict[dataset](l,h)
+            X_train_flatten = flatten_dataset(X_train).numpy()
+            X_test_flatten = flatten_dataset(X_test).numpy()
+            y_train_flatten = flatten_dataset(y_train).cpu().detach().numpy()
+            y_test_flatten = flatten_dataset(y_test).cpu().detach().numpy()
 
-    for model in model_list:
-        config['Model'][model] = default_config['Model'][model]
-        config['Model'][model]['shap_batch_size'] = run_config['shap_batch_size']
-        config['Model'][model]['batch_size'] = run_config['batch_size']
+            config['Dataset'][f'{dataset}_{l}_{h}']["X_train"]=X_train
+            config['Dataset'][f'{dataset}_{l}_{h}']["X_test"]=X_test
+            config['Dataset'][f'{dataset}_{l}_{h}']["y_train"]=y_train
+            config['Dataset'][f'{dataset}_{l}_{h}']["y_test"]=y_test
+            config['Dataset'][f'{dataset}_{l}_{h}']["X_train_flatten"] = X_train_flatten
+            config['Dataset'][f'{dataset}_{l}_{h}']["X_test_flatten"] = X_test_flatten
+            config['Dataset'][f'{dataset}_{l}_{h}']["y_train_flatten"] = y_train_flatten
+            config['Dataset'][f'{dataset}_{l}_{h}']["y_test_flatten"] = y_test_flatten
 
+            try: 
+                config['Dataset'][f'{dataset}_{l}_{h}']['epsilon_for_shap'] = np.array(run_config["Datasets"][dataset]['epsilon_for_shap'])
+                config['Dataset'][f'{dataset}_{l}_{h}']['poison_number_for_shap'] = np.array(run_config["Datasets"][dataset]['poison_number_for_shap'])
+            except Exception as e:
+                config['Dataset'][f'{dataset}_{l}_{h}']['epsilon_for_shap'] = np.array([])
+                config['Dataset'][f'{dataset}_{l}_{h}']['poison_number_for_shap'] = np.array([])
+                
+            config['Dataset'][f'{dataset}_{l}_{h}']['batch_size'] = run_config["Datasets"][dataset]['batch_size']
+
+            for model in model_list:
+                config['Dataset'][f'{dataset}_{l}_{h}'][model] = copy.deepcopy(run_config['Models'][model])
+                config['Dataset'][f'{dataset}_{l}_{h}'][model]['shap_batch_size'] = run_config['shap_batch_size']
+                config['Dataset'][f'{dataset}_{l}_{h}'][model]['batch_size'] = run_config['batch_size']
+                config['Dataset'][f'{dataset}_{l}_{h}'][model]['seq_len'] = int(l)
+                config['Dataset'][f'{dataset}_{l}_{h}'][model]['pred_len'] = int(h)
+        #         print(f'for model {model} it stores lookback {l} and horizon {h}')
+        #     print(dataset,l,h,'dlinear',config['Dataset'][f'euma_{l}_{h}']['dlinear']['seq_len'])
+
+        # print('after everything')
+        # print(config['Dataset']['euma_70_35']['dlinear']['seq_len'])
+        # print(config['Dataset']['euma_60_35']['dlinear']['seq_len'])
+        # print(config['Dataset']['euma_50_35']['dlinear']['seq_len'])
+
+    
     config = edict(config)
     return config
 
 def save_config(h5f, config):
     for key, value in config.items():
-        print(key)
         if isinstance(value, dict):
             subgroup = h5f.create_group(key)
             save_config(subgroup, value)
@@ -131,6 +124,7 @@ def save_config(h5f, config):
             dt = h5py.string_dtype(encoding='utf-8')
             h5f.create_dataset(key, data=value, dtype=dt)
         else:
+            print(value)
             raise TypeError(f"Unsupported data type for key '{key}': {type(value)}")
 
 def save_results_dict(h5f, results_dict):
@@ -153,22 +147,9 @@ def save_results_dict(h5f, results_dict):
                         elif isinstance(value, dict):
                             subgroup = params_grp.create_group(param_name)
                             save_config(subgroup, value)
-
-                elif attack=='backtime':
-                    model_params_grp = model_grp.create_group("backtime")
-                    for attack_name, fields in attacks.items():
-                        attack_backtime_grp = model_params_grp.create_group(attack_name)
-                        for key, value in fields.items():
-                            if isinstance(value, torch.Tensor):
-                                attack_backtime_grp.create_dataset(key, data=value.detach().cpu().numpy())
-                            elif isinstance(value, np.ndarray):
-                                attack_backtime_grp.create_dataset(key, data=value)
-                            elif isinstance(value, (float)):
-                                attack_backtime_grp.create_dataset(key, data=value)
                 else:
                     attack_grp = model_grp.create_group(attack)
                     for key,value in attacks.items():
-                        print(key)
                         if 'attack_rolling_var_dynamic' in attack and key == 'decision_tensor':
                             dyn_tensor_grp = attack_grp.create_group("dyn_decision_tensor")
                             for idx, tensor in enumerate(value):
@@ -209,45 +190,32 @@ def main(config,folder_path):
                     # results_dict[dataset][model_name]['backtime']['backtime']["f_norm"] = train_metrics[5]
                     # results_dict[dataset][model_name]['backtime']['backtime']["mse_norm"] = train_metrics[6]
                     # results_dict[dataset][model_name]['backtime']['backtime']["mape"] = train_metrics[7]
-
-                model = model_dict[model_name](config['Model'][model_name])
+                model = model_dict[model_name](config.Dataset[dataset][model_name])
                 model.to(dev)
                 # model.load_state_dict(torch.load('/home/quentin/TimeSeriesF/results/EUMA_corrected/trained_models/dlinear_euma_70_35.pt'))
                 # predictions = torch.tensor(np.loadtxt(f'/home/quentin/TimeSeriesF/results/EUMA_corrected/predictions/dlinear_euma_70_35_predictions.txt')) +offset
                 
                 ## Training the model
-                model, predictions, best_state_dict, loss_train, val_loss, test_loss = train_model(model, dev, X_train, y_train, X_test, y_test, config.Model[model_name])
+                
+                model, predictions, loss_train, val_loss, test_loss = train_model(model, dev, X_train, y_train, X_test, y_test, config.Dataset[dataset][model_name])
                 model.to(dev)
-                ## Running the attacks
 
                 ## Extracting SHAP and CP values form real or surrogate model ???
-                results_dict = load_results_dict(h5py.File('results/pipeline/shap_values/results.h5', 'r'))
-                shap_values = results_dict['euma']['dlinear']['model_parameters']['shap_values']
-                # print(shap_values)
-                # with open(f'results/EUMA_corrected/shap_values/shap_values_test_euma_dlinear_70_35.pkl', 'rb') as f:
-                #     shap_values = pickle.load(f).values
-
-                # shap_values = get_SHAP_values(model, dev, X_train, X_test, config['Model'][model_name]).values
-                # # # shap_values = shap_values.reshape(X_test.shape[0],-1,config['Model'][model_name]['pred_len'],config['Model'][model_name]['enc_in'])
+                # prev_results_dict = load_results_dict(h5py.File('results/save/results.h5', 'r'))
+                # shap_values = prev_results_dict['euma']['dlinear']['model_parameters']['shap_values']
+    
+                shap_values = get_SHAP_values(model, dev, X_train, X_test, config.Dataset[dataset][model_name]).values
                 shap_values = torch.tensor(shap_values)
-                # print(shap_values)
+
                 X_train = X_train.cpu()
                 y_train = y_train.cpu()
                 X_test = X_test.cpu()
                 y_test = y_test.cpu()
-                # shap_values = shap_values.to(dev)
-                X_test_rs = X_test.reshape(X_test.shape[0],config['Model'][model_name]['enc_in']*config['Model'][model_name]['seq_len']) + offset
-                # X_test_rs = X_test_rs.to(dev)
-                # print("shap_values shape ", shap_values.shape, type(shap_values))
+
+                X_test_rs = X_test.reshape(X_test.shape[0],config.Dataset[dataset][model_name]['enc_in']*config.Dataset[dataset][model_name]['seq_len']) + offset
                 cp_values, xai_matrix = linear_xai(X_test_rs, shap_values)
-                
-                dim1 = shap_values.shape[1]
-                # cp_values = torch.tensor(cp_values).to(dev)
-                # predictions = torch.tensor(predictions).to(dev)
-                # # run_tests(shap_values, cp_values,X_test,y_test,model,predictions,folder_path)
                 tensor_dict = {'shap':shap_values,'cp':cp_values}
-                # tensor_dict = {}
-                # print(attack_list)
+
                 for attack in attack_list:
                     if attack in ['pgd', 'fgsm', 'bim'] :
                         print(f"Running attack {attack} on {model_name} training with {dataset}")
@@ -266,10 +234,13 @@ def main(config,folder_path):
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["duration"] = atk.duration
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["in_fnorm"] = atk.in_fnorm
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["in_mse"] = atk.in_mse
+                                results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["in_rmse"] = atk.in_rmse
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["in_mape"] = atk.in_mape
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_mse_gt"] = atk.out_mse_gt
+                                results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_rmse_gt"] = atk.out_rmse_gt
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_mae_gt"] = atk.out_mae_gt
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_mse"] = atk.out_mse
+                                results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_rmse"] = atk.out_rmse
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["out_mae"] = atk.out_mae
                                 results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}']["num_targeted"] = atk.num_targeted
                     else :
@@ -291,49 +262,22 @@ def main(config,folder_path):
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["duration"] = atk.duration
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["in_fnorm"] = atk.in_fnorm
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["in_mse"] = atk.in_mse
+                                    results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["in_rmse"] = atk.in_rmse
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["in_mape"] = atk.in_mape
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_mse_gt"] = atk.out_mse_gt
+                                    results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_rmse_gt"] = atk.out_rmse_gt
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_mae_gt"] = atk.out_mae_gt
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_mse"] = atk.out_mse
+                                    results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_rmse"] = atk.out_rmse
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["out_mae"] = atk.out_mae
                                     results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["num_targeted"] = atk.num_targeted
 
-
                                     #### Recompute the SHAP values after attacking
-                                    if config['compute_poisoned_tensors']:
-                                    
-                                        shap_after_poisoning = shap_values.clone()
-                                        indices = atk.indices
-                                        indices.sort()
-                                        points = indices
+                                    if eps in config['eps_for_shap'] and p_num in config['num_p_for_shap']:
 
-                                        #### Recompute only the new points or the points within the window
-                                        if idx > 0:
-                                            points = []
-                                            prev_indices = results_dict[dataset][model_name][f'{attack}_{str(p_number[idx-1])}_{str(eps)}_{tensor}']["indices"]
-                                            prev_indices.sort()
-                                            size = len(indices)
-                                            prev_size = len(prev_indices)
-                                            i,j=0,0
-                                            while i<size and j<prev_size:
-                                                if prev_indices[j]==indices[i]:
-                                                    i+=1
-                                                    j+=1
-                                                else:
-                                                    close_idxs_up = get_close_idxs(indices[i], prev_size, prev_indices, j, 1)
-                                                    close_idxs_down = get_close_idxs(indices[i], prev_size, prev_indices, j-1, -1)
-                                                    close_idxs = [indices[i]] + close_idxs_up + close_idxs_down
-                                                    points.append(close_idxs)
-                                                    i+=1
-                                            points = [item for sublist in points for item in sublist]
-                                            # print('points to compute : ', points)
-
-                                        for point in points:
-                                            # print(point, ', range of points :',max(0,point-dim1),point+1)
-                                            temp = get_SHAP_values(model, dev, X_train.to(dev), atk.X_indices[max(0,point-dim1):point+1].to(dev), config['Model'][model_name]).values
-                                            temp = torch.tensor(temp)
-                                            shap_after_poisoning[max(0,point-dim1):point+1] = temp
-                                        X_indices_rs = atk.X_indices.reshape(atk.X_indices.shape[0],config['Model'][model_name]['enc_in']*config['Model'][model_name]['seq_len']) + offset 
+                                        shap_after_poisoning = get_SHAP_values(model, dev, X_train.to(dev), atk.X_indices.to(dev), config.Dataset[dataset][model_name]).values
+                                        shap_after_poisoning = torch.tensor(shap_after_poisoning)
+                                        X_indices_rs = atk.X_indices.reshape(atk.X_indices.shape[0],config.Dataset[dataset][model_name]['enc_in']*config.Dataset[dataset][model_name]['seq_len']) + offset 
                                         results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["shap_poisoned"] = shap_after_poisoning
                                         tensor_poisoned = shap_after_poisoning
 
@@ -344,14 +288,13 @@ def main(config,folder_path):
                                             results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["cp_poisoned"] = cp_after_poisoning
                                             tensor_poisoned = cp_after_poisoning
 
-                                        if config['compare_targeted_points_before_and_after_poisoning']:
-                                            #### Get the points that would be poisoned if we attack again the poisoned dataset
-                                            if attack=='attack_rolling_var_dynamic' or attack=='attack_rolling_var':
-                                                indices_after_pois = elect_points_dict[attack](tensor_poisoned, results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["input"], p_num)
-                                                results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["indices_after_pois"] = indices_after_pois
-                                            else:
-                                                indices_after_pois = elect_points_dict[attack](tensor_poisoned, p_num)
-                                                results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["indices_after_pois"] = indices_after_pois
+                                        #### Get the points that would be poisoned if we attack again the poisoned dataset
+                                        if attack=='attack_rolling_var_dynamic' or attack=='attack_rolling_var':
+                                            indices_after_pois = elect_points_dict[attack](tensor_poisoned, results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["input"], p_num)
+                                            results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["indices_after_pois"] = indices_after_pois
+                                        else:
+                                            indices_after_pois = elect_points_dict[attack](tensor_poisoned, p_num)
+                                            results_dict[dataset][model_name][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["indices_after_pois"] = indices_after_pois
 
                                     # if config['backtime_comparison']:
                                         # atk_ts_shape, train_metrics = backtime_comparison(dataset, atk.target_points)
@@ -365,13 +308,11 @@ def main(config,folder_path):
                                         # results_dict[dataset][model_name]['backtime'][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["mse_norm"] = train_metrics[6]
                                         # results_dict[dataset][model_name]['backtime'][f'{attack}_{str(p_num)}_{str(eps)}_{tensor}']["mape"] = train_metrics[7]
 
-
                 results_dict[dataset][model_name]['model_parameters'] = {}
                 results_dict[dataset][model_name]['model_parameters']["loss_train"] = loss_train
                 results_dict[dataset][model_name]['model_parameters']["val_loss"] = val_loss
                 results_dict[dataset][model_name]['model_parameters']["test_loss"] = test_loss
                 results_dict[dataset][model_name]['model_parameters']["predictions"] = predictions
-                # results_dict[dataset][model_name]['model_parameters']["best_state_dict"] = best_state_dict
                 results_dict[dataset][model_name]['model_parameters']['X_train'] = config.Dataset[dataset]["X_train"]
                 results_dict[dataset][model_name]['model_parameters']['y_train'] = config.Dataset[dataset]["y_train"]
                 results_dict[dataset][model_name]['model_parameters']['X_test'] = config.Dataset[dataset]["X_test"]
@@ -389,15 +330,17 @@ def main(config,folder_path):
 
 
 if __name__ == "__main__":
-    config = parser_args()
-    folder_path = 'results/pipeline/'
+
+    folder_path = 'results/tests/'
     if not os.path.exists(folder_path):
         os.makedirs(folder_path)
 
-    results_dict = main(config,folder_path)
-
-    with h5py.File(f'{folder_path}results.h5', 'w') as h5f:
-        save_results_dict(h5f, results_dict)
+    config = parser_args()
     with h5py.File(f'{folder_path}config.h5', 'w') as h5f:
         save_config(h5f, config)
+
+    results_dict = main(config,folder_path)
+    with h5py.File(f'{folder_path}results.h5', 'w') as h5f:
+        save_results_dict(h5f, results_dict)
+
     print("THE END")

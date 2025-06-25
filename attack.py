@@ -3,6 +3,7 @@ import torch.nn.functional as F
 import numpy as np
 import time
 import os
+import math
 from models import DLinear
 
 MODEL_MAP = {
@@ -233,10 +234,13 @@ class Attack:
 
         self.in_fnorm = torch.norm(cln_input - self.input, p='fro').item()
         self.in_mse = F.mse_loss(cln_input.squeeze(),self.input.squeeze()).item()
+        self.in_rmse = math.sqrt(self.in_mse)
         self.in_mape = (torch.mean(torch.abs((cln_input.squeeze() - self.input.squeeze()) / (cln_input.squeeze()))) * 100).item()
         self.out_mse_gt = F.mse_loss(ground_truth.squeeze(), self.output.squeeze()).item()
+        self.out_rmse_gt = math.sqrt(self.out_mse_gt)
         self.out_mae_gt = F.l1_loss(ground_truth.squeeze(), self.output.squeeze()).item()
         self.out_mse = F.mse_loss(cln_predictions.squeeze(), self.output.squeeze()).item()
+        self.out_rmse = math.sqrt(self.out_mse)
         self.out_mae = F.l1_loss(cln_predictions.squeeze(), self.output.squeeze()).item()
 
         self.num_targeted = len(self.target_points)

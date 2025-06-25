@@ -1,14 +1,63 @@
-datasets: ['euma']
-models: ['dlinear']
+datasets: ['euma'] # It has to correspond to one of the name in the "Datasets"
+models: ['dlinear'] # It has to correspond to one of the name in the "Models" 
 # attacks: ['attack_contrib', highest_contrib, 'attack_distrib', 'attack_rolling_var', 'attack_rolling_var_dynamic','pgd', 'fgsm', 'bim']
-attacks: ['attack_contrib', highest_contrib, 'attack_distrib','pgd', 'fgsm', 'bim']
-# attacks: ['attack_contrib', highest_contrib, 'attack_distrib',]
-# attacks: ['pgd', 'fgsm', 'bim']
-# attacks: ['attack_contrib']
-loopback : 70
-horizon : 35
+# attacks: ['attack_contrib', highest_contrib, 'attack_distrib','pgd', 'fgsm', 'bim']
+attacks: ['attack_contrib','pgd', 'fgsm', 'bim']
 batch_size: 40
 shap_batch_size: 80000
-backtime_comparison: False
-compute_poisoned_tensors: True
-compare_targeted_points_before_and_after_poisoning: True
+
+Datasets:
+  #### model
+  # name: 
+  #   lookback: [] # Put every lookback values you want to test. If only one value, will be broadcast to very horizon values.
+  #   horizon: [] # Put every horizon values you want to test. If only one value, will be broadcast to very lookback values.
+  #   batch_size: X # Insert the batch size you want to use
+  #   eps_for_shap: [] # Leave it empty if you don't want to compute tensors after poisoning
+  #   num_p_for_shap: [] # Leave it empty if you don't want to compute tensors after poisoning
+
+    euma:
+        lookback: [70]
+        horizon: [35]
+        batch_size: 40
+        epsilon_for_shap: [0.1]
+        poison_number_for_shap: [10]
+
+Attacks:
+    attack_contrib:
+        poison_number: [10,12] # num_values
+        epsilon: [0.1,0.05]
+
+    highest_contrib:
+        poison_number: [10,12] # num_values
+        epsilon: [0.1,0.05]
+
+    attack_distrib:
+        poison_number: [10,12] # num_values
+        epsilon: [0.1,0.05]
+
+    attack_rolling_var:
+        epsilon: [0.1,0.05]
+        poison_number: [1,2]  # 100-x quantile
+
+    attack_rolling_var_dynamic:
+        epsilon: [0.1,0.05]
+        poison_number: [1,3]  # top_k_values
+
+    fgsm:
+        poison_number: [0] # Only put one value for avoiding errors but this field is useless
+        epsilon: [0.1,0.05]
+    bim:
+        poison_number: [10,20,30,40,50,60,70,80,90,100]
+        epsilon: [0.1,0.05]
+    pgd:
+        poison_number: [10,20,30,40,50,60,70,80,90,100]
+        epsilon: [0.1,0.05]
+
+Models:
+    dlinear:
+        num_kernel: 25
+        enc_in: 1
+        individual: 0
+        learning_rate: 0.001
+        patience_scheduler: 16
+        epochs : 100

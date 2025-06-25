@@ -1,0 +1,240 @@
+nohup: ignoring input
+/home/quentin/AML_TSF/pipeline.py:208: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  shap_values = torch.tensor(shap_values)
+attack_list :  ['attack_contrib', 'highest_contrib', 'attack_distrib', 'pgd', 'fgsm', 'bim']
+dataset_list :  ['euma']
+model_list :  ['dlinear']
+after adding the attacks :  dict_keys(['Model', 'Attack'])
+Attack list: dict_keys(['attack_contrib', 'highest_contrib', 'attack_distrib', 'pgd', 'fgsm', 'bim']), dataset list: dict_keys(['euma_70_35', 'euma_60_35', 'euma_50_35']), model list: dict_keys(['dlinear'])
+new best validation loss: 0.3829186260700226
+Epoch 0: train loss 0.536479, val loss 0.382919,  test loss 0.406871 
+new best validation loss: 0.35616475343704224
+Epoch 1: train loss 0.358123, val loss 0.356165,  test loss 0.361563 
+new best validation loss: 0.33297833800315857
+Epoch 2: train loss 0.339220, val loss 0.332978,  test loss 0.349648 
+Epoch 3: train loss 0.333256, val loss 0.334490,  test loss 0.341252 
+Epoch 4: train loss 0.328486, val loss 0.336318,  test loss 0.340428 
+new best validation loss: 0.32425400614738464
+Epoch 5: train loss 0.325918, val loss 0.324254,  test loss 0.338987 
+new best validation loss: 0.32185283303260803
+Epoch 6: train loss 0.324504, val loss 0.321853,  test loss 0.337132 
+new best validation loss: 0.3177553713321686
+Epoch 7: train loss 0.323320, val loss 0.317755,  test loss 0.340707 
+Epoch 8: train loss 0.323486, val loss 0.322887,  test loss 0.336559 
+Epoch 9: train loss 0.321295, val loss 0.318794,  test loss 0.337001 
+new best validation loss: 0.3080839514732361
+Epoch 10: train loss 0.321365, val loss 0.308084,  test loss 0.344449 
+Epoch 11: train loss 0.320759, val loss 0.313626,  test loss 0.335204 
+Epoch 12: train loss 0.319076, val loss 0.314938,  test loss 0.336952 
+new best validation loss: 0.3068786561489105
+Epoch 13: train loss 0.319857, val loss 0.306879,  test loss 0.344278 
+Epoch 14: train loss 0.319962, val loss 0.309581,  test loss 0.336895 
+Epoch 15: train loss 0.319065, val loss 0.316583,  test loss 0.339043 
+Epoch 16: train loss 0.319234, val loss 0.319085,  test loss 0.339540 
+Epoch 17: train loss 0.317644, val loss 0.319396,  test loss 0.330932 
+Epoch 18: train loss 0.319455, val loss 0.310959,  test loss 0.333490 
+Epoch 19: train loss 0.318124, val loss 0.315911,  test loss 0.333375 
+Epoch 20: train loss 0.319138, val loss 0.316416,  test loss 0.332723 
+Epoch 21: train loss 0.317377, val loss 0.312456,  test loss 0.332655 
+Epoch 22: train loss 0.318641, val loss 0.317434,  test loss 0.331278 
+Epoch 23: train loss 0.317391, val loss 0.317643,  test loss 0.332880 
+Epoch 24: train loss 0.317615, val loss 0.309024,  test loss 0.339172 
+Epoch 25: train loss 0.317345, val loss 0.315314,  test loss 0.330965 
+Epoch 26: train loss 0.317621, val loss 0.311736,  test loss 0.331177 
+Epoch 27: train loss 0.317500, val loss 0.321724,  test loss 0.333026 
+Epoch 28: train loss 0.318088, val loss 0.316281,  test loss 0.328989 
+Epoch 29: train loss 0.316500, val loss 0.308577,  test loss 0.333288 
+Epoch 30: train loss 0.316427, val loss 0.311262,  test loss 0.332637 
+Epoch 31: train loss 0.316072, val loss 0.311333,  test loss 0.331531 
+Epoch 32: train loss 0.316778, val loss 0.310773,  test loss 0.332841 
+Epoch 33: train loss 0.317316, val loss 0.311187,  test loss 0.331847 
+Epoch 34: train loss 0.316947, val loss 0.311870,  test loss 0.331016 
+Epoch 35: train loss 0.317171, val loss 0.308083,  test loss 0.331780 
+Epoch 36: train loss 0.317258, val loss 0.312917,  test loss 0.333204 
+Epoch 37: train loss 0.316442, val loss 0.311744,  test loss 0.335174 
+Epoch 38: train loss 0.317310, val loss 0.313425,  test loss 0.331190 
+Epoch 39: train loss 0.313658, val loss 0.310036,  test loss 0.330387 
+Epoch 40: train loss 0.313800, val loss 0.313980,  test loss 0.329169 
+Epoch 41: train loss 0.314184, val loss 0.312189,  test loss 0.329398 
+Epoch 42: train loss 0.313356, val loss 0.310708,  test loss 0.330099 
+Epoch 43: train loss 0.312987, val loss 0.311705,  test loss 0.329914 
+Epoch 44: train loss 0.313183, val loss 0.309122,  test loss 0.330632 
+Epoch 45: train loss 0.313411, val loss 0.310917,  test loss 0.330206 
+Epoch 46: train loss 0.314117, val loss 0.310061,  test loss 0.330013 
+Epoch 47: train loss 0.313140, val loss 0.309869,  test loss 0.330397 
+Epoch 48: train loss 0.313108, val loss 0.311486,  test loss 0.329790 
+Epoch 49: train loss 0.313124, val loss 0.309767,  test loss 0.330261 
+Epoch 50: train loss 0.313258, val loss 0.314373,  test loss 0.329089 
+Epoch 51: train loss 0.313821, val loss 0.312391,  test loss 0.329283 
+Epoch 52: train loss 0.313806, val loss 0.310590,  test loss 0.329903 
+Epoch 53: train loss 0.313342, val loss 0.310025,  test loss 0.329913 
+Epoch 54: train loss 0.314617, val loss 0.310206,  test loss 0.329954 
+Epoch 55: train loss 0.312957, val loss 0.312059,  test loss 0.329263 
+Epoch 56: train loss 0.313361, val loss 0.310494,  test loss 0.329961 
+Epoch 57: train loss 0.312765, val loss 0.310566,  test loss 0.329919 
+Epoch 58: train loss 0.313257, val loss 0.310452,  test loss 0.329970 
+Epoch 59: train loss 0.312896, val loss 0.310411,  test loss 0.329939 
+Epoch 60: train loss 0.312957, val loss 0.310382,  test loss 0.329947 
+Epoch 61: train loss 0.312977, val loss 0.310396,  test loss 0.329929 
+Epoch 62: train loss 0.313029, val loss 0.310315,  test loss 0.329979 
+Epoch 63: train loss 0.313314, val loss 0.310266,  test loss 0.329992 
+Epoch 64: train loss 0.313065, val loss 0.310284,  test loss 0.330004 
+Epoch 65: train loss 0.313053, val loss 0.310254,  test loss 0.329960 
+Epoch 66: train loss 0.312733, val loss 0.310331,  test loss 0.329967 
+Epoch 67: train loss 0.313351, val loss 0.310317,  test loss 0.329961 
+Epoch 68: train loss 0.312898, val loss 0.310294,  test loss 0.329964 
+Epoch 69: train loss 0.313314, val loss 0.310425,  test loss 0.329920 
+Epoch 70: train loss 0.312992, val loss 0.310320,  test loss 0.329939 
+Epoch 71: train loss 0.313686, val loss 0.310282,  test loss 0.329983 
+Epoch 72: train loss 0.313596, val loss 0.310304,  test loss 0.329934 
+Epoch 73: train loss 0.312897, val loss 0.310169,  test loss 0.330015 
+Epoch 74: train loss 0.313061, val loss 0.310184,  test loss 0.330007 
+Epoch 75: train loss 0.312728, val loss 0.310175,  test loss 0.330010 
+Epoch 76: train loss 0.313554, val loss 0.310176,  test loss 0.330011 
+Epoch 77: train loss 0.312768, val loss 0.310199,  test loss 0.330001 
+Epoch 78: train loss 0.313752, val loss 0.310196,  test loss 0.330004 
+Epoch 79: train loss 0.313032, val loss 0.310203,  test loss 0.329999 
+Epoch 80: train loss 0.313605, val loss 0.310215,  test loss 0.329989 
+Epoch 81: train loss 0.313053, val loss 0.310211,  test loss 0.329994 
+Epoch 82: train loss 0.312743, val loss 0.310201,  test loss 0.329999 
+Epoch 83: train loss 0.314414, val loss 0.310202,  test loss 0.329998 
+Epoch 84: train loss 0.312762, val loss 0.310199,  test loss 0.329997 
+Epoch 85: train loss 0.313343, val loss 0.310216,  test loss 0.329988 
+Epoch 86: train loss 0.313263, val loss 0.310212,  test loss 0.329991 
+Epoch 87: train loss 0.314097, val loss 0.310224,  test loss 0.329986 
+Epoch 88: train loss 0.312236, val loss 0.310240,  test loss 0.329980 
+Epoch 89: train loss 0.312910, val loss 0.310238,  test loss 0.329980 
+Epoch 90: train loss 0.313301, val loss 0.310250,  test loss 0.329974 
+Epoch 91: train loss 0.313722, val loss 0.310251,  test loss 0.329974 
+Epoch 92: train loss 0.313162, val loss 0.310250,  test loss 0.329974 
+Epoch 93: train loss 0.313505, val loss 0.310251,  test loss 0.329974 
+Epoch 94: train loss 0.313544, val loss 0.310251,  test loss 0.329974 
+Epoch 95: train loss 0.313715, val loss 0.310251,  test loss 0.329974 
+Epoch 96: train loss 0.313526, val loss 0.310252,  test loss 0.329974 
+Epoch 97: train loss 0.313502, val loss 0.310250,  test loss 0.329974 
+Epoch 98: train loss 0.314022, val loss 0.310251,  test loss 0.329974 
+Epoch 99: train loss 0.313262, val loss 0.310252,  test loss 0.329973 
+torch.Size([1443, 70, 1]) torch.Size([1443, 70, 35])
+new best validation loss: 0.39219552278518677
+Epoch 0: train loss 0.595481, val loss 0.392196,  test loss 0.441261 
+new best validation loss: 0.3454815149307251
+Epoch 1: train loss 0.375919, val loss 0.345482,  test loss 0.370661 
+new best validation loss: 0.33907920122146606
+Epoch 2: train loss 0.345150, val loss 0.339079,  test loss 0.353542 
+new best validation loss: 0.32953619956970215
+Epoch 3: train loss 0.336862, val loss 0.329536,  test loss 0.349238 
+new best validation loss: 0.31894242763519287
+Epoch 4: train loss 0.332734, val loss 0.318942,  test loss 0.351145 
+Epoch 5: train loss 0.329866, val loss 0.320328,  test loss 0.344019 
+Epoch 6: train loss 0.328328, val loss 0.325321,  test loss 0.340594 
+Epoch 7: train loss 0.327808, val loss 0.326068,  test loss 0.338255 
+new best validation loss: 0.31542789936065674
+Epoch 8: train loss 0.326122, val loss 0.315428,  test loss 0.340011 
+new best validation loss: 0.3111174702644348
+Epoch 9: train loss 0.324983, val loss 0.311117,  test loss 0.347636 
+Epoch 10: train loss 0.323584, val loss 0.319357,  test loss 0.336989 
+Epoch 11: train loss 0.323111, val loss 0.318335,  test loss 0.337511 
+Epoch 12: train loss 0.325217, val loss 0.311648,  test loss 0.339042 
+Epoch 13: train loss 0.323241, val loss 0.318370,  test loss 0.337833 
+Epoch 14: train loss 0.322700, val loss 0.323352,  test loss 0.337999 
+Epoch 15: train loss 0.321520, val loss 0.316417,  test loss 0.335917 
+new best validation loss: 0.3105805814266205
+Epoch 16: train loss 0.321774, val loss 0.310581,  test loss 0.337958 
+Epoch 17: train loss 0.322406, val loss 0.325517,  test loss 0.335460 
+new best validation loss: 0.30973076820373535
+Epoch 18: train loss 0.321174, val loss 0.309731,  test loss 0.337572 
+new best validation loss: 0.3084402084350586
+Epoch 19: train loss 0.321124, val loss 0.308440,  test loss 0.337173 
+Epoch 20: train loss 0.320708, val loss 0.310766,  test loss 0.337128 
+new best validation loss: 0.30616408586502075
+Epoch 21: train loss 0.320467, val loss 0.306164,  test loss 0.339104 
+Epoch 22: train loss 0.320892, val loss 0.311269,  test loss 0.335994 
+Epoch 23: train loss 0.319984, val loss 0.307576,  test loss 0.339429 
+Epoch 24: train loss 0.319839, val loss 0.312503,  test loss 0.336307 
+Epoch 25: train loss 0.320074, val loss 0.326227,  test loss 0.335801 
+Epoch 26: train loss 0.320334, val loss 0.310789,  test loss 0.335533 
+Epoch 27: train loss 0.319579, val loss 0.313775,  test loss 0.334163 
+Epoch 28: train loss 0.318956, val loss 0.307031,  test loss 0.336089 
+Epoch 29: train loss 0.319965, val loss 0.307472,  test loss 0.342388 
+Epoch 30: train loss 0.320252, val loss 0.312074,  test loss 0.333778 
+Epoch 31: train loss 0.319903, val loss 0.306317,  test loss 0.338059 
+Epoch 32: train loss 0.318716, val loss 0.310986,  test loss 0.334576 
+Epoch 33: train loss 0.320461, val loss 0.308736,  test loss 0.335760 
+Epoch 34: train loss 0.319756, val loss 0.306615,  test loss 0.340237 
+Epoch 35: train loss 0.319886, val loss 0.312548,  test loss 0.333607 
+Epoch 36: train loss 0.320108, val loss 0.318317,  test loss 0.332815 
+Epoch 37: train loss 0.318966, val loss 0.319911,  test loss 0.332726 
+Epoch 38: train loss 0.318843, val loss 0.307374,  test loss 0.337284 
+Epoch 39: train loss 0.320148, val loss 0.306997,  test loss 0.336959 
+Epoch 40: train loss 0.320855, val loss 0.306609,  test loss 0.337390 
+Epoch 41: train loss 0.318997, val loss 0.312346,  test loss 0.333294 
+Epoch 42: train loss 0.316691, val loss 0.310164,  test loss 0.333206 
+Epoch 43: train loss 0.316722, val loss 0.309827,  test loss 0.333515 
+Epoch 44: train loss 0.316482, val loss 0.310137,  test loss 0.333260 
+Epoch 45: train loss 0.316341, val loss 0.309580,  test loss 0.333398 
+Epoch 46: train loss 0.316149, val loss 0.309331,  test loss 0.333807 
+Epoch 47: train loss 0.316587, val loss 0.310537,  test loss 0.333592 
+Epoch 48: train loss 0.316726, val loss 0.311964,  test loss 0.332559 
+Epoch 49: train loss 0.316747, val loss 0.308822,  test loss 0.333683 
+Epoch 50: train loss 0.316385, val loss 0.309730,  test loss 0.333410 
+Epoch 51: train loss 0.316168, val loss 0.309676,  test loss 0.333848 
+Epoch 52: train loss 0.316263, val loss 0.309060,  test loss 0.333531 
+Epoch 53: train loss 0.316153, val loss 0.308464,  test loss 0.334042 
+Epoch 54: train loss 0.316352, val loss 0.312193,  test loss 0.332742 
+Epoch 55: train loss 0.316163, val loss 0.310057,  test loss 0.333604 
+Epoch 56: train loss 0.316824, val loss 0.308963,  test loss 0.333492 
+Epoch 57: train loss 0.316471, val loss 0.308640,  test loss 0.334053 
+Epoch 58: train loss 0.316134, val loss 0.310007,  test loss 0.333252 
+Epoch 59: train loss 0.316406, val loss 0.310670,  test loss 0.332861 
+Epoch 60: train loss 0.316294, val loss 0.310259,  test loss 0.332987 
+Epoch 61: train loss 0.316420, val loss 0.310070,  test loss 0.333071 
+Epoch 62: train loss 0.316235, val loss 0.309801,  test loss 0.333170 
+Epoch 63: train loss 0.316023, val loss 0.309452,  test loss 0.333309 
+Epoch 64: train loss 0.315824, val loss 0.309430,  test loss 0.333308 
+Epoch 65: train loss 0.316193, val loss 0.309518,  test loss 0.333293 
+Epoch 66: train loss 0.315881, val loss 0.309386,  test loss 0.333349 
+Epoch 67: train loss 0.315672, val loss 0.309301,  test loss 0.333393 
+Epoch 68: train loss 0.316608, val loss 0.309253,  test loss 0.333401 
+Epoch 69: train loss 0.316139, val loss 0.309325,  test loss 0.333381 
+Epoch 70: train loss 0.315552, val loss 0.309349,  test loss 0.333363 
+Epoch 71: train loss 0.315756, val loss 0.309306,  test loss 0.333378 
+Epoch 72: train loss 0.315811, val loss 0.309237,  test loss 0.333418 
+Epoch 73: train loss 0.316331, val loss 0.309246,  test loss 0.333422 
+Epoch 74: train loss 0.316500, val loss 0.309219,  test loss 0.333429 
+Epoch 75: train loss 0.315928, val loss 0.309197,  test loss 0.333442 
+Epoch 76: train loss 0.315905, val loss 0.309276,  test loss 0.333400 
+Epoch 77: train loss 0.315534, val loss 0.309284,  test loss 0.333398 
+Epoch 78: train loss 0.315403, val loss 0.309269,  test loss 0.333404 
+Epoch 79: train loss 0.315725, val loss 0.309265,  test loss 0.333406 
+Epoch 80: train loss 0.316055, val loss 0.309263,  test loss 0.333408 
+Epoch 81: train loss 0.316064, val loss 0.309257,  test loss 0.333409 
+Epoch 82: train loss 0.316114, val loss 0.309252,  test loss 0.333411 
+Epoch 83: train loss 0.315919, val loss 0.309263,  test loss 0.333408 
+Epoch 84: train loss 0.315755, val loss 0.309255,  test loss 0.333409 
+Epoch 85: train loss 0.316081, val loss 0.309271,  test loss 0.333405 
+Epoch 86: train loss 0.315851, val loss 0.309270,  test loss 0.333406 
+Epoch 87: train loss 0.316182, val loss 0.309248,  test loss 0.333413 
+Epoch 88: train loss 0.315881, val loss 0.309273,  test loss 0.333404 
+Epoch 89: train loss 0.315852, val loss 0.309262,  test loss 0.333409 
+Epoch 90: train loss 0.316348, val loss 0.309253,  test loss 0.333412 
+Epoch 91: train loss 0.315842, val loss 0.309257,  test loss 0.333411 
+Epoch 92: train loss 0.316048, val loss 0.309272,  test loss 0.333405 
+Epoch 93: train loss 0.315841, val loss 0.309271,  test loss 0.333405 
+Epoch 94: train loss 0.315802, val loss 0.309270,  test loss 0.333405 
+Epoch 95: train loss 0.316615, val loss 0.309270,  test loss 0.333405 
+Epoch 96: train loss 0.316279, val loss 0.309270,  test loss 0.333405 
+Epoch 97: train loss 0.315937, val loss 0.309270,  test loss 0.333405 
+Epoch 98: train loss 0.315681, val loss 0.309270,  test loss 0.333405 
+Epoch 99: train loss 0.315983, val loss 0.309272,  test loss 0.333404 
+torch.Size([1443, 60, 1]) torch.Size([1443, 70, 35])
+Traceback (most recent call last):
+  File "/home/quentin/AML_TSF/pipeline.py", line 344, in <module>
+    results_dict = main(config,folder_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/quentin/AML_TSF/pipeline.py", line 216, in main
+    cp_values, xai_matrix = linear_xai(X_test_rs, shap_values)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/quentin/AML_TSF/utils.py", line 650, in linear_xai
+    s_x=s/X
+        ~^~
+RuntimeError: The size of tensor a (70) must match the size of tensor b (60) at non-singleton dimension 1
