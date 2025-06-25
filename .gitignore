@@ -1,0 +1,10 @@
+*.pyc
+*.pkl
+*.txt
+*.pt
+*.nbc
+*.nbi
+!*.gitkeep
+results/
+models/
+dataset/

@@ -1,0 +1,14 @@
+datasets: ['euma']
+models: ['dlinear']
+# attacks: ['attack_contrib', highest_contrib, 'attack_distrib', 'attack_rolling_var', 'attack_rolling_var_dynamic','pgd', 'fgsm', 'bim']
+attacks: ['attack_contrib', highest_contrib, 'attack_distrib','pgd', 'fgsm', 'bim']
+# attacks: ['attack_contrib', highest_contrib, 'attack_distrib',]
+# attacks: ['pgd', 'fgsm', 'bim']
+# attacks: ['attack_contrib']
+loopback : 70
+horizon : 35
+batch_size: 40
+shap_batch_size: 80000
+backtime_comparison: False
+compute_poisoned_tensors: True
+compare_targeted_points_before_and_after_poisoning: True
